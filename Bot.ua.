@@ -1,0 +1,28 @@
+import logging
+import os
+from aiogram import Bot, Dispatcher, types
+from aiogram.utils import executor
+from dotenv import load_dotenv
+
+# Загружаем токен бота из переменных окружения
+load_dotenv()
+TOKEN = os.getenv("BOT_TOKEN")
+
+# Настраиваем логирование
+logging.basicConfig(level=logging.INFO)
+
+# Создаём бота и диспетчер
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
+
+# Партнёрская ссылка
+PARTNER_LINK = "https://example.com/partner-link"  # Замени на свою ссылку
+
+# Обрабатываем команду /start
+@dp.message_handler(commands=['start'])
+async def send_welcome(message: types.Message):
+    await message.reply(f"Привет! Вот твоя партнёрская ссылка: {PARTNER_LINK}")
+
+# Запуск бота
+if __name__ == "__main__":
+    executor.start_polling(dp, skip_updates=True)
