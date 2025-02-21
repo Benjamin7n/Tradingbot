@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title></title>
+<meta name="Generator" content="Cocoa HTML Writer">
+<style type="text/css">
+p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Courier; color: #abb2bf}
+p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Courier; color: #c678dd}
+p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Courier; color: #abb2bf; min-height: 14.0px}
+p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Courier; color: #5c6370}
+p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Courier; color: #98c379}
+p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Courier; color: #61aeee}
+span.s1 {font-family: 'Courier'; font-weight: normal; font-style: normal; font-size: 14.00px; color: #c678dd}
+span.s2 {font-family: 'Courier'; font-weight: normal; font-style: normal; font-size: 14.00px}
+span.s3 {font-family: 'Courier'; font-weight: normal; font-style: normal; font-size: 14.00px; color: #abb2bf}
+span.s4 {font-family: 'Courier-Oblique'; font-weight: normal; font-style: italic; font-size: 14.00px}
+span.s5 {font-family: 'Courier'; font-weight: normal; font-style: normal; font-size: 14.00px; color: #98c379}
+span.s6 {font-family: 'Courier-Oblique'; font-weight: normal; font-style: italic; font-size: 14.00px; color: #5c6370}
+span.s7 {font-family: 'Courier'; font-weight: normal; font-style: normal; font-size: 14.00px; color: #e06c75}
+span.s8 {font-family: 'Courier'; font-weight: normal; font-style: normal; font-size: 14.00px; color: #56b6c2}
+</style>
+</head>
+<body>
+<p class="p1"><span class="s1">import</span><span class="s2"> logging</span></p>
+<p class="p2"><span class="s2">import</span><span class="s3"> os</span></p>
+<p class="p1"><span class="s1">from</span><span class="s2"> aiogram </span><span class="s1">import</span><span class="s2"> Bot, Dispatcher, types</span></p>
+<p class="p1"><span class="s1">from</span><span class="s2"> aiogram.utils </span><span class="s1">import</span><span class="s2"> executor</span></p>
+<p class="p1"><span class="s1">from</span><span class="s2"> dotenv </span><span class="s1">import</span><span class="s2"> load_dotenv</span></p>
+<p class="p3"><span class="s2"></span><br></p>
+<p class="p4"><span class="s4"># Загружаем токен бота из переменных окружения</span></p>
+<p class="p1"><span class="s2">load_dotenv()</span></p>
+<p class="p1"><span class="s2">TOKEN = os.getenv(</span><span class="s5">"BOT_TOKEN"</span><span class="s2">)</span></p>
+<p class="p3"><span class="s2"></span><br></p>
+<p class="p4"><span class="s4"># Настраиваем логирование</span></p>
+<p class="p1"><span class="s2">logging.basicConfig(level=logging.INFO)</span></p>
+<p class="p3"><span class="s2"></span><br></p>
+<p class="p4"><span class="s4"># Создаём бота и диспетчер</span></p>
+<p class="p1"><span class="s2">bot = Bot(token=TOKEN)</span></p>
+<p class="p1"><span class="s2">dp = Dispatcher(bot)</span></p>
+<p class="p3"><span class="s2"></span><br></p>
+<p class="p4"><span class="s4"># Партнёрская ссылка</span></p>
+<p class="p5"><span class="s3">PARTNER_LINK = </span><span class="s2">"https://example.com/partner-link"</span><span class="s3"><span class="Apple-converted-space">  </span></span><span class="s6"># Замени на свою ссылку</span></p>
+<p class="p3"><span class="s2"></span><br></p>
+<p class="p4"><span class="s4"># Обрабатываем команду /start</span></p>
+<p class="p6"><span class="s2">@dp.message_handler(commands=[</span><span class="s5">'start'</span><span class="s2">])</span></p>
+<p class="p1"><span class="s1">async</span><span class="s2"> </span><span class="s1">def</span><span class="s2"> send_welcome(message: types.Message):</span></p>
+<p class="p5"><span class="s3"><span class="Apple-converted-space">    </span></span><span class="s1">await</span><span class="s3"> message.reply(</span><span class="s2">f"Привет! Вот твоя партнёрская ссылка: </span><span class="s7">{PARTNER_LINK}</span><span class="s2">"</span><span class="s3">)</span></p>
+<p class="p3"><span class="s2"></span><br></p>
+<p class="p4"><span class="s4"># Запуск бота</span></p>
+<p class="p1"><span class="s1">if</span><span class="s2"> __name__ == </span><span class="s5">"__main__"</span><span class="s2">:</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>executor.start_polling(dp, skip_updates=</span><span class="s8">True</span><span class="s2">)</span></p>
+</body>
+</html>
